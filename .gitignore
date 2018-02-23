@@ -1,0 +1,6 @@
+.idea/
+
+local-settings.php
+
+composer.lock
+vendor/
