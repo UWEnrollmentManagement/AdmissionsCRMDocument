@@ -1,5 +1,31 @@
 {
+    "name": "uwdoem/admissions-crm-document",
+    "description": "Slim.php middleware library for Authorizing users through the University of Washington Group and Person Web Services",
+    "authors": [
+        {
+            "name": "Page Bonifaci",
+            "email": "BonPacific@protonmail.com"
+        },
+        {
+            "name": "Elizabeth Williams",
+            "email": "wizzah@gmail.com"
+        },
+        {
+            "name": "Joseph Schilz",
+            "email": "joseph@schilz.org",
+            "homepage": "https://www.schilz.org"
+        }
+    ],
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    },
     "require": {
-        "uwdoem/person": "^1.5"
+        "uwdoem/crm-curler": "^0.0.4"
+    },
+    "require-dev": {
+        "uwdoem/standard": "*",
+        "squizlabs/php_codesniffer": "2.*"
     }
 }
