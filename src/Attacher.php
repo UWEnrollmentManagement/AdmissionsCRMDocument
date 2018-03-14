@@ -99,7 +99,6 @@ class Attacher
             $locationHeader = $responseHeaders['location'][0];
             $entityId = substr($locationHeader, strpos($locationHeader, '('));
             $entityId = trim($entityId, '()');
-            $entityId = (int)$entityId, '()';
 
             return $entityId;
         } else {
