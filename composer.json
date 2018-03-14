@@ -1,6 +1,6 @@
 {
     "name": "uwdoem/admissions-crm-document",
-    "description": "Slim.php middleware library for Authorizing users through the University of Washington Group and Person Web Services",
+    "description": "Helper library for attaching documents to the UW Admissions Microsoft Dynamics CRM instance.",
     "authors": [
         {
             "name": "Page Bonifaci",
