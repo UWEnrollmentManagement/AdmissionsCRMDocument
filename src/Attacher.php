@@ -117,14 +117,18 @@ class Attacher
     protected function createSupplementalInformationSubmission($contactId, $informationItemId, $informationItemName)
     {
         $location = 'datatel_supplementalinformationsubmissions';
+
+        $crmFormattedDate = (new \DateTime('now', (new \DateTimeZone("UTC"))))->format(DATE_ISO8601);
+        $crmFormattedDate = strstr($crmFormattedDate, '+', false);
+        $crmFormattedDate = $crmFormattedDate . '0000Z';
+
         $data = [
             "datatel_suppinfoitem_suppinfosubmission@odata.bind" => "/datatel_supplementalinformationitems($informationItemId)",
             "datatel_contact_datatel_supplementalinformationsu@odata.bind" => "/contacts($contactId)",
             "datatel_name" => $informationItemName,
             "datatel_submissionstatus" => 1,
             "uwit_processingstatus" => 1,
-            //"datatel_submissiondate" => (new \DateTime('now'))->format(DATE_ISO8601),
-            "datatel_submissiondate" => '2018-02-23T07:32:05.4272Z',
+            "datatel_submissiondate" => $crmFormattedDate,
         ];
         $body = json_encode($data, JSON_UNESCAPED_SLASHES);
 
