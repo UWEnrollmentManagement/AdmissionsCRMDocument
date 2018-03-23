@@ -119,8 +119,8 @@ class Attacher
         $location = 'datatel_supplementalinformationsubmissions';
 
         $crmFormattedDate = (new \DateTime('now', (new \DateTimeZone("UTC"))))->format(DATE_ISO8601);
-        $crmFormattedDate = strstr($crmFormattedDate, '+', false);
-        $crmFormattedDate = $crmFormattedDate . '0000Z';
+        $crmFormattedDate = strstr($crmFormattedDate, '+', true);
+        $crmFormattedDate = $crmFormattedDate . '.0000Z';
 
         $data = [
             "datatel_suppinfoitem_suppinfosubmission@odata.bind" => "/datatel_supplementalinformationitems($informationItemId)",
