@@ -124,15 +124,12 @@ class Attacher
 
         $data = [
             "datatel_suppinfoitem_suppinfosubmission@odata.bind" => "/datatel_supplementalinformationitems($informationItemId)",
+            "datatel_contact_datatel_supplementalinformationsu@odata.bind" => "/contacts($contactId)",
             "datatel_name" => $informationItemName,
             "datatel_submissionstatus" => 1,
             "uwit_processingstatus" => 1,
             "datatel_submissiondate" => $crmFormattedDate,
         ];
-        if ($contactId !== false) {
-            $data["datatel_contact_datatel_supplementalinformationsu@odata.bind"] = "/contacts($contactId)";
-        }
-
         $body = json_encode($data, JSON_UNESCAPED_SLASHES);
 
         $requestHeaders = [
@@ -201,16 +198,12 @@ class Attacher
      * @param string $documentBody        The body the document to attach, encoded in base64.
      * @param string $documentName        The file name of the document to attach.
      * @param string $documentMimeType    The mime type of the document to attach.
-     * @param bool $allowWithoutContact   Whether to record the document in the CRM if a contact can not be found.
      * @return string|false               The Id of the created annotation on success, or false on failure.
      */
-    public function attach($systemKey, $informationItemName, $documentBody, $documentName, $documentMimeType, $allowWithoutContact = false)
+    public function attach($systemKey, $informationItemName, $documentBody, $documentName, $documentMimeType)
     {
-        $contactId = false;
-        if (trim((string)$systemKey) !== '') {
-            $contactId = $this->getContactId($systemKey);
-        }
-        if ($contactId === false && $allowWithoutContact === false) {
+        $contactId = $this->getContactId($systemKey);
+        if ($contactId === false) {
             $this->error = 'Failed to find contact for given system key.';
             return false;
         }
